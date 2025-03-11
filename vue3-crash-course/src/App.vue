@@ -1,26 +1,30 @@
 <script>
+import { ref } from 'vue';
 export default {
-  data() {
-    return {
-      name: "Jonas Donas",
-      status: "pending",
-      tasks: ['task 1', 'task 2', 'task 3'],
-      link: 'https://google.com',
-    };
-  },
-  methods: {
-    toggleStatus() {
-      if (this.status === 'active') {
-        this.status = 'pending';
+  setup() {
+    const name = ref('Jonas Donas');
+    const status = ref('active');
+    const tasks = ref(['task 1', 'task 2', 'task 3']);
+
+    const toggleStatus = () => {
+      if (status.value === 'active') {
+        status.value = 'pending';
       }
-      else if (this.status === 'pending') {
-        this.status = 'inactive';
+      else if (status.value === 'pending') {
+        status.value = 'inactive';
       }
       else {
-        this.status = 'active';
+        status.value = 'active';
       }
-    }
-  },
+    };
+    
+    return {
+      name, 
+      status, 
+      tasks, 
+      toggleStatus,
+    };
+  }
 }
 </script>
 
@@ -32,9 +36,6 @@ export default {
   <ul>
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
-  <br/>
-  <!-- <a v-bind:href="link">Clik for Google</a> -->
-  <a :href="link">Google</a>
   <br/>
   <button v-on:click="toggleStatus">Change Status</button>
   <br/>
