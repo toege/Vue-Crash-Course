@@ -1,4 +1,11 @@
+<script setup>
+  import Navbar from './components/Navbar.vue';
+
+</script>
+
+<!-- Video 1:01:40 -->
+
 
 <template>
-  <h1>Vue Jobs</h1>
+  <Navbar />
 </template>
