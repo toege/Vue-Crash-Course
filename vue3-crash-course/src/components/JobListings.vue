@@ -1,11 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import JobListing from './JobListing.vue';
-import jobData from '@/jobs2.json';
-import { ref, defineProps, computed } from 'vue';
-
-const jobs = ref(jobData);
-console.log(jobs.value);
+import jobData from '@/jobs.json';
+import { ref, defineProps, onMounted } from 'vue';
 
 defineProps({
     limit: Number,
@@ -14,10 +11,28 @@ defineProps({
         default: false,
     },
 });
+
+const jobs = ref(null);
+const error = ref(null);
+
+const fetchData = async () => {
+  try {
+    const response = await fetch("/api/jobs");
+    if (!response.ok) throw new Error("Failed to fetch");
+    jobs.value = await response.json();
+  } catch (err) {
+    error.value = err.message;
+  }
+};
+
+onMounted(fetchData);
 </script>
 
 <template>
-    <section class="bg-blue-50 px-4 py-10">
+  <section v-if="!jobs">
+    Loading...
+  </section>
+  <section v-else class="bg-blue-50 px-4 py-10">
         <div class="contaner-xl lg:container m-auto">
             <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
                 Browse Jobs

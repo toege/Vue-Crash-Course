@@ -4,9 +4,11 @@ import { RouterView } from 'vue-router';
 
 </script>
 
-<!-- Video 1:49:08 -->
+<!-- Video 2:37:00 -->
+<!-- npm run dev -->
+<!-- npm run server -->
 
 <template>
   <Navbar />
   <RouterView />
-</template>
+</template>y

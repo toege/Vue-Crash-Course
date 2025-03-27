@@ -1,8 +1,7 @@
 <script setup>
-import JobListing from '@/components/JobListing.vue';
+import JobListings from '@/components/JobListings.vue';
 </script>
 
 <template>
-    <JobListings/>
-  
+    <JobListings />  
 </template>
